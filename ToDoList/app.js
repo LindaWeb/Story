@@ -10,14 +10,23 @@ app.set('view engine', 'ejs');
 app.get("/", function(req, res) {
     
     var today = new Date();
-    var currentDay = today.getDay()
-    var day = "";
+    var weekday = new Array(7);
+    // var currentDay = today.getDay()
+    // if (currentDay === 6 || currentDay === 0) {
+    //     day = "Weekend";
+    // } else {
+    //     day = "Weekday";
+    // }
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
 
-    if (currentDay === 6 || currentDay === 0) {
-        day = "Weekend";
-    } else {
-        day = "Weekday";
-    }
+    var day = weekday[today.getDay()];
+
     res.render('list', {kindOfDay: day});
 });
 
