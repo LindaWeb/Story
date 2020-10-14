@@ -9,15 +9,16 @@ app.set('view engine', 'ejs');
 
 app.get("/", function(req, res) {
     
-    res.render('index', {foo: 'FOO'});
-    
     var today = new Date();
+    var currentDay = today.getDay()
+    var day = "";
 
-    if (today.getDay() === 6 || today.getDay() === 0) {
-        res.send("Yay it's the weekend, I have to work!");
+    if (currentDay === 6 || currentDay === 0) {
+        day = "Weekend";
     } else {
-        res.send("Hmm, I have to work!");
+        day = "Weekday";
     }
+    res.render('list', {kindOfDay: day});
 });
 
 
