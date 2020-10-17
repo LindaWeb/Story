@@ -19,17 +19,20 @@ app.get("/", function(req, res) {
         day: "numeric",
         month: "long",
     }
+    var optionsWeekend  = {
+        weekday: "long",
+    }
 
     var day = today.toLocaleDateString("en-US", options);
+    var weekend = today.toLocaleDateString("en-US", optionsWeekend);
 
-    res.render('list', {kindOfDay: day, newlistItems: toDoItems});
+    res.render('list', {kindOfDay: day, newlistItems: toDoItems, weekend: weekend});
 });
 
 app.post("/", function(req, res) {
     var toDoItem = req.body.toDoItem;
 
     toDoItems.push(toDoItem);
-    // toDoItems.push("<li>" + toDoItem + "</li>");
     res.redirect("/");
 });
 
