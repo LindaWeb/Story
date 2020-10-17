@@ -4,30 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<div class="box" id="heading">
+    <% if (weekend === "Saturday" || weekend === "Sunday") { %>
+        <h1 style="color: maroon">It's <%= kindOfDay %>!</h1>
+    <% } else { %>
+        <h1 style="color: navy">It's <%= kindOfDay %>!</h1>
+    <% } %>
+</div>
 
-<% if (weekend === "Saturday" || weekend === "Sunday") { %>
-    <h1 style="color: maroon">It's <%= kindOfDay %>!</h1>
-<% } else { %>
-    <h1 style="color: navy">It's <%= kindOfDay %>!</h1>
-<% } %>
-
-<ul>
-
+<div class="box">
     <% for(var i=0; i<newlistItems.length; i++) {%> 
-        <li>
-            <%= newlistItems[i]%>
-        </li>
+        <div class="item">
+            <input type="checkbox">
+            <p><%= newlistItems[i]%></p>
+        </div>
      <% } %>
+     <form class="item" action="/" method="post">
+        <!-- <label for="toDoItem">New Item</label> -->
+        <input type="text" name="toDoItem" id="toDoItemInput" placeholder="New To Do Item">
+        <button type="submit">+</button>
+    </form>
+    
+    </div>
 
-</ul>
-
-<form action="/" method="post">
-    <!-- <label for="toDoItem">New Item</label> -->
-    <input type="text" name="toDoItem" id="toDoItemInput">
-    <button type="submit">Add</button>
-</form>
 
 
 </body>
