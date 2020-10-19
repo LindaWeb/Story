@@ -5,9 +5,9 @@ const date = require(__dirname + "/date.js");
 
 const app = express();
 
-let toDoItems = ["Buy Food", "Cook Food", "Eat Food"];
-let workItems = [];
-let weekend = "";
+const toDoItems = ["Buy Food", "Cook Food", "Eat Food"];
+const workItems = [];
+const weekend = "";
 
 app.set('view engine', 'ejs');
 
@@ -16,8 +16,8 @@ app.use(express.static("public"));
 
 app.get("/", function(req, res) {
     
-    let day = date.getDate();
-    let weekend = date.getDay();
+    const day = date.getDate();
+    const weekend = date.getDay();
 
     res.render('list', {listTitle: day, newlistItems: toDoItems, weekend: weekend});
 });
@@ -26,7 +26,7 @@ app.post("/", function(req, res) {
 
     console.log(req.body);
 
-    var toDoItem = req.body.toDoItem;
+    const toDoItem = req.body.toDoItem;
 
     if (req.body.list === "Work\ List" ) {
         workItems.push(toDoItem);
@@ -47,7 +47,7 @@ app.get("/about", function(req, res){
 });
 
 app.post("/work", function(req, res){
-    let item = req.body.toDoItem;
+    const item = req.body.toDoItem;
     workItems.push(item);
     res.redirect("/work");
 });
