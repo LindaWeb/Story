@@ -33,14 +33,27 @@ app.get("/", function(req, res) {
 });
 
 app.post("/", function(req, res) {
+
+    console.log(req.body);
+
     var toDoItem = req.body.toDoItem;
 
-    toDoItems.push(toDoItem);
-    res.redirect("/");
+    if (req.body.list === "Work\ List" ) {
+        workItems.push(toDoItem);
+        res.redirect("/work");        
+    } else {
+        toDoItems.push(toDoItem);
+        res.redirect("/");
+    }
+
 });
 
 app.get("/work", function(req, res){
     res.render("list", {listTitle: "Work List", newlistItems: workItems, weekend: weekend});
+});
+
+app.get("/about", function(req, res){
+    res.render("about");
 });
 
 app.post("/work", function(req, res){

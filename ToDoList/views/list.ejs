@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+<%- include("header") -%>
+
 <div class="box" id="heading">
     <% if (weekend === "Saturday" || weekend === "Sunday") { %>
         <h1 style="color: maroon">It's <%= listTitle %>!</h1>
@@ -25,12 +18,10 @@
      <form class="item" action="/" method="post">
         <!-- <label for="toDoItem">New Item</label> -->
         <input type="text" name="toDoItem" id="toDoItemInput" placeholder="New To Do Item">
-        <button type="submit">+</button>
+        <button type="submit" name="list" value="<%= listTitle %>">+</button>
     </form>
     
     </div>
 
 
-
-</body>
-</html>
+    <%- include("footer") -%>
