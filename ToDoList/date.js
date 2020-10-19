@@ -1,41 +1,30 @@
 
 // console.log(module);
 
-module.exports.getDate = getDate;
-
-function getDate() {
-   
-   var today = new Date();
-
-   var options = {
-       weekday: "long",
-       day: "numeric",
-       month: "long",
-   }
-//    var optionsWeekend  = {
-//        weekday: "long",
-//    }
-
-   var day = today.toLocaleDateString("en-US", options);
-//    var weekend = today.toLocaleDateString("en-US", optionsWeekend);
-
-   return day;
-
-}
-
-module.exports.getDay = getDay;
-function getDay() {
+exports.getDate = function() {
    
     var today = new Date();
  
     var options = {
         weekday: "long",
+        day: "numeric",
+        month: "long",
     }
  
-    var day = today.toLocaleDateString("en-US", options);
-
-    return day;
+     return today.toLocaleDateString("en-US", options);
  
  }
-
- console.log(module.exports);
+ 
+exports.getDay = function() {
+    
+     var today = new Date();
+  
+     var options = {
+         weekday: "long",
+     }
+  
+     return today.toLocaleDateString("en-US", options);
+  
+  }
+ 
+//   console.log(module.exports);
