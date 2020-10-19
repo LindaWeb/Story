@@ -1,6 +1,7 @@
 const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
+const date = require(__dirname + "/date.js");
 
 const app = express();
 
@@ -15,19 +16,8 @@ app.use(express.static("public"));
 
 app.get("/", function(req, res) {
     
-    var today = new Date();
-
-    var options = {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-    }
-    var optionsWeekend  = {
-        weekday: "long",
-    }
-
-    var day = today.toLocaleDateString("en-US", options);
-    var weekend = today.toLocaleDateString("en-US", optionsWeekend);
+    let day = date.getDate();
+    let weekend = date.getDay();
 
     res.render('list', {listTitle: day, newlistItems: toDoItems, weekend: weekend});
 });
