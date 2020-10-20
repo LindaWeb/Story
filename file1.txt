@@ -8,3 +8,14 @@ touch about.ejs footer.ejs header.ejs list.ejs
 cd ..; touch apps.js date.js
 
 npm i nodemon express body-parse ejs; npm init
+
+
+
+
+Notes for the challange:
+mkdir views; 
+mkdir public; cd public; mkdir css;
+
+
+npm install
+
