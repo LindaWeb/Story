@@ -13,9 +13,15 @@ npm i nodemon express body-parse ejs; npm init
 
 
 Notes for the challange:
-mkdir views; 
-mkdir public; cd public; mkdir css;
 
+mkdir views; mkdir public; cd public; mkdir css; cd css; touch styles.css; cd ../../
+
+cd views; touch about.ejs compose.ejs contact.ejs footer.ejs header.ejs home.ejs post.ejs; cd ..; touch app.js package.json
+
+>copy in content
 
 npm install
 
+
+
+Gold Stars: * * * * 
