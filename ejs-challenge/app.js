@@ -18,9 +18,9 @@ app.use(express.static("public"));
 let posts = [];
 
 app.get("/", function(req, res){
-    res.render("home", {homeContent:homeStartingContent});
+    res.render("home", {homeContent:homeStartingContent, posts:posts});
 
-    console.log(posts);
+    // console.log(posts);
 });
 
 app.get("/about", function(req, res){
@@ -30,10 +30,10 @@ app.get("/about", function(req, res){
 app.get("/contact", function(req, res){
     res.render("contact", {contactContent:contactContent});
 });
+
 app.get("/compose", function(req, res){
     res.render("compose");
 });
-
 
 app.post("/compose", function(req, res) {
 
@@ -43,8 +43,6 @@ app.post("/compose", function(req, res) {
     const post = {title: postTitle, body:postBody};
 
     posts.push(post);
-
-    // console.log(posts);
 
     res.redirect("/");
 });
