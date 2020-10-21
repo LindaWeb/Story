@@ -23,6 +23,20 @@ app.get("/", function(req, res){
     // console.log(posts);
 });
 
+app.get("/posts/:blogId", function(req, res){
+    res.render("home", {homeContent:homeStartingContent, posts:posts});
+    const requestedBlog = req.params.blogId;
+
+    posts.forEach(function(post) {
+        if (post.title === requestedBlog) {
+            console.log("Match found!");
+        };
+    });
+
+    // console.log(blogID);
+    // console.log(posts);
+});
+
 app.get("/about", function(req, res){
     res.render("about", {aboutContent:aboutContent});
 });
