@@ -56,21 +56,11 @@ app.get('/posts/:blogPath', function (req, res) {
     posts.forEach(function(post) { 
         var blogPath = _.lowerCase(post.blogTitle);
         if (requestedPath === blogPath) {
-            console.log("Match Found");
-        } else {
-            console.log("NO Match Found");
-        }
+            res.render("post", {post:post});
+        } 
     });
-    
-    res.send(req.params.blogPath);
 
   })
-
-
-
-
-
-
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
