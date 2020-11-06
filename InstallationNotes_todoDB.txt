@@ -1,0 +1,12 @@
+
+Added some notes for get the server up faster in the play ground;
+https://www.katacoda.com/courses/nodejs/playground
+
+Notes for the challange  todoDB:
+
+mkdir views; mkdir public; cd public; mkdir css; cd css; touch styles.css; cd ../../; cd views; touch about.ejs  footer.ejs header.ejs list.ejs; cd ..; touch app.js date.js package.json
+
+
+>copy in content
+
+npm install
