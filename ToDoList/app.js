@@ -1,25 +1,51 @@
 const express = require("express");
 const https = require("https");
+const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const date = require(__dirname + "/date.js");
 
 const app = express();
 
-const toDoItems = ["Buy Food", "Cook Food", "Eat Food"];
-const workItems = [];
-const weekend = "";
+// const toDoItems = ["Buy Food", "Cook Food", "Eat Food"];
+// const workItems = [];
+// const weekend = "";
 
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+mongoose.connect("mongodb+srv://lindae:adnil789@cluster0.0za49.mongodb.net/todolistDB",  { useUnifiedTopology: true, useNewUrlParser: true });
+
+const itemsSchema = new mongoose.Schema ({
+    name: String
+});
+
+const Item = mongoose.model("Item", itemsSchema);
+
+const item1 = new Item ({
+    name: "Welcome to your tosolist!"
+});
+const item2 = new Item ({
+    name: "Hit the + button to add new item."
+});
+const item3 = new Item ({
+    name: "<-- Hit this to delete."
+});
+
+const defaultItems = [item1, item2, item3];
+
+Item.insertMany(defaultItems, function(err){
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Yaay!!");
+    }
+}) 
+
+
 app.get("/", function(req, res) {
     
-    const day = date.getDate();
-    const weekend = date.getDay();
-
-    res.render('list', {listTitle: day, newlistItems: toDoItems, weekend: weekend});
+    res.render('list', {listTitle: "Today", newlistItems: toDoItems, weekend: weekend});
 });
 
 app.post("/", function(req, res) {

@@ -1,90 +1,83 @@
-const mongoose = require('mongoose');
+const express = require("express");
+const https = require("https");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
-mongoose.connect("mongodb+srv://lindae:adnil789@cluster0.0za49.mongodb.net/fruitsDB",  { useUnifiedTopology: true, useNewUrlParser: true });
+const app = express();
 
+// const toDoItems = ["Buy Food", "Cook Food", "Eat Food"];
+// const workItems = [];
+// const weekend = "";
 
-const fruitSchema = new mongoose.Schema ({
-    // name: { type: String, required: [true, 'is missing, grrr :( ']},
-    name: String,
-    rating: {
-        type: Number,
-        min: 1,
-        max: 10
-    },
-    review: String
+app.set('view engine', 'ejs');
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static("public"));
+
+mongoose.connect("mongodb+srv://lindae:adnil789@cluster0.0za49.mongodb.net/todolistDB",  { useUnifiedTopology: true, useNewUrlParser: true });
+
+const itemsSchema = new mongoose.Schema ({
+    name: String
 });
 
-const Fruit = mongoose.model("Fruit", fruitSchema);
+const Item = mongoose.model("Item", itemsSchema);
 
-const fruit = new Fruit ({
-    name: "Pineapple",
-    rating: 9,
-    review: "Prickely sweet!"
+const item1 = new Item ({
+    name: "Welcome to your tosolist!"
+});
+const item2 = new Item ({
+    name: "Hit the + button to add new item."
+});
+const item3 = new Item ({
+    name: "<-- Hit this to delete."
 });
 
-fruit.save();
+const defaultItems = [item1, item2, item3];
 
-const peopleSchema = new mongoose.Schema ({
-    name: String,
-    age: Number,
-    favoriteFruit: fruitSchema
-});
-
-const Person = mongoose.model("Person", peopleSchema);
-
-const person = new Person ({
-    name: "Sally",
-    age: "15",
-    favoriteFruit: Pineapple
-});
-
-person.save();
-
-const kiwi = new Fruit ({
-    name: "Kiwi",
-    rating: 10,
-    review: "The best"
-});
-
-const orange = new Fruit ({
-    name: "Orange",
-    rating: 8,
-    review: "Full of C."
-});
-
-const banana = new Fruit ({
-    name: "Banana",
-    rating: 7,
-    review: "It's just crooked."
-});
-
-// Fruit.insertMany([kiwi, orange, banana], function(err){
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log("Sucessfully inserted")
-//     }
-// });
-
-
-Fruit.find(function(err, fruits){
+Item.insertMany(defaultItemns, function(err){
     if (err) {
         console.log(err);
     } else {
-        // console.log(fruits)
-        // mongoose.connection.close();
-
-        fruits.forEach(function(fruit){
-            // console.log(fruit.name)
-            console.log(fruits)
-        });
+        console.log("Yaay!!");
     }
+}) 
+
+
+app.get("/", function(req, res) {
+    
+    res.render('list', {listTitle: "Today", newlistItems: toDoItems, weekend: weekend});
 });
 
-Fruit.updateOne({_id: "5fa3395ee2af370708f84e3a"}, {name: "Peach2"}, function(err){
-    if (err){
-        console.log(err);
+app.post("/", function(req, res) {
+
+    console.log(req.body);
+
+    const toDoItem = req.body.toDoItem;
+
+    if (req.body.list === "Work\ List" ) {
+        workItems.push(toDoItem);
+        res.redirect("/work");        
     } else {
-        console.log("Success! Updated.");
+        toDoItems.push(toDoItem);
+        res.redirect("/");
     }
+
+});
+
+app.get("/work", function(req, res){
+    res.render("list", {listTitle: "Work List", newlistItems: workItems, weekend: weekend});
+});
+
+app.get("/about", function(req, res){
+    res.render("about");
+});
+
+app.post("/work", function(req, res){
+    const item = req.body.toDoItem;
+    workItems.push(item);
+    res.redirect("/work");
+});
+
+app.listen(3000, function() {
+    console.log("Server is running on Port 3000.");
 });
