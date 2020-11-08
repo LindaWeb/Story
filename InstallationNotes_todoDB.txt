@@ -4,7 +4,7 @@ https://www.katacoda.com/courses/nodejs/playground
 
 Notes for the challange  todoDB:
 
-mkdir views; mkdir public; cd public; mkdir css; cd css; touch styles.css; cd ../../; cd views; touch about.ejs  footer.ejs header.ejs list.ejs; cd ..; touch app.js date.js package.json
+mkdir views; mkdir public; cd public; mkdir css; cd css; touch styles.css; cd ../../; cd views; touch about.ejs  footer.ejs header.ejs list.ejs; cd ..; touch app.js package.json
 
 
 >copy in content
