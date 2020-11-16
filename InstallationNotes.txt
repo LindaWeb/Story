@@ -13,3 +13,8 @@ mkdir views; mkdir public; cd public; mkdir css; cd css; touch styles.css; cd ..
 >copy in content
 
 npm install
+
+
+
+mkdir views; mkdir public; cd public; mkdir css; cd css; touch styles.css; cd ../../; cd views; touch secrets.ejs register.ejs login.ejs home.ejs submit.ejs; mkdir partials; cd partials; touch footer.ejs header.ejs; cd ../..; touch app.js package.json .env
+
